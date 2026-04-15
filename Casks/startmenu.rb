@@ -17,6 +17,16 @@ cask "startmenu" do
 
   app "StartMenu.app"
 
+  postflight do
+    # The app is ad-hoc signed (no paid Apple Developer ID, no
+    # notarization). Homebrew applies the quarantine attribute to the
+    # downloaded DMG like any other cask, so Gatekeeper would block the
+    # first launch. Strip it so `brew install` actually leaves the user
+    # with a runnable app.
+    system_command "/usr/bin/xattr",
+                   args: ["-dr", "com.apple.quarantine", "#{appdir}/StartMenu.app"]
+  end
+
   zap trash: [
     "~/Library/Preferences/app.pavlenko.startmenu.plist",
     "~/Library/Application Support/app.pavlenko.startmenu",
