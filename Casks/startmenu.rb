@@ -1,6 +1,6 @@
 cask "startmenu" do
-  version "0.3.0"
-  sha256 "4fe9d19ccfad1f4b6f90d4a03e7b8f7f181de5b243e0fa02e5f4c0fd4389698b"
+  version "0.3.1"
+  sha256 "bb2a4d2bb031337e01dd81a242e255ef796e4a68818d552bd4915e6f1ef7c85b"
 
   url "https://github.com/region23/StartMenu/releases/download/v#{version}/StartMenu-#{version}.dmg"
   name "Start Menu"
@@ -18,11 +18,9 @@ cask "startmenu" do
   app "StartMenu.app"
 
   postflight do
-    # The app is ad-hoc signed (no paid Apple Developer ID, no
-    # notarization). Homebrew applies the quarantine attribute to the
-    # downloaded DMG like any other cask, so Gatekeeper would block the
-    # first launch. Strip it so `brew install` actually leaves the user
-    # with a runnable app.
+    # Ad-hoc signed, not notarized — strip the quarantine attribute
+    # Homebrew applies to every downloaded cask so Gatekeeper doesn't
+    # block the first launch.
     system_command "/usr/bin/xattr",
                    args: ["-dr", "com.apple.quarantine", "#{appdir}/StartMenu.app"]
   end
