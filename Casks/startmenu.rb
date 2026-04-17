@@ -1,6 +1,6 @@
 cask "startmenu" do
-  version "0.3.24"
-  sha256 "df1657f5acd23712f770c815912f6f54dbb0445a1a72c0fa276057037ec68989"
+  version "0.3.25"
+  sha256 "6250395b5700a3fbd0809625ec51fce21e509ac5f8dc32ace344c906705c629b"
 
   url "https://github.com/region23/StartMenu/releases/download/v#{version}/StartMenu-#{version}.dmg"
   name "Start Menu"
